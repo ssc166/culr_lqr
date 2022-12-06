@@ -58,9 +58,11 @@
                 <material name=""/>
             </visual>
 
-            <collision>                
+            <collision>      
+                <!-- <origin xyz="0 0 -0.0" rpy="1.5708 0.0 0"/>           -->
                 <origin xyz="0 0 -0.0" rpy="0 0.0 0"/>
                 <geometry>
+                    <!-- <cylinder radius="0.069" length="0.04"/> -->
                     <mesh filename="package://cmg_leg_description/meshes/wheel_link.STL" scale="0.001 0.001 0.001"/>                 
                 </geometry>
             </collision>
@@ -75,7 +77,7 @@
 <!-- ######################################################################################### -->
 <!-- 0.171 -->
         <joint name="ankle_pitch_joint" type="fixed">
-		    <origin xyz="0 0 0.0" rpy="0.0 0.490655767230835 0.0" /> 
+		    <origin xyz="0 0 0.0" rpy="0.0 0.745238866846359 0.0" /> 
             <!-- 0.745238866846359 -->
             <!-- <axis xyz="0 1 0"/> -->
 		    <parent link="ankle_link"/>
@@ -112,7 +114,7 @@
 <!-- ######################################################################################### -->
 
         <joint name="knee_joint" type="fixed">
-		    <origin xyz="0 0 0.279942" rpy="0.0 -1.05866060527226 0.0" />
+		    <origin xyz="0 0 0.279942" rpy="0.0 -1.63070174355873 0.0" />
             <!-- -1.63070174355873 -->
             <!-- <axis xyz="0 1 0"/> -->
 		    <parent link="knee_ankle_link"/>
@@ -148,7 +150,7 @@
 <!-- ######################################################################################### -->
 
         <joint name="hip_pitch_joint" type="fixed">
-		    <origin xyz="0 0 0.28" rpy="0.0 0.568004838041421 0.0" />
+		    <origin xyz="0 0 0.28" rpy="0.0 0.885462876712376 0.0" />
             <!-- 0.885462876712376  -->
             <!-- <axis xyz="0 1 0"/> -->
 		    <parent link="hip_to_knee_link"/>
@@ -180,19 +182,16 @@
             </inertial>
         </link>
 
-        <joint name="imu_joint" type="revolute">
+        <joint name="imu_joint" type="fixed">
 		    <origin xyz="0 0 0.28" rpy="0.0 0.0 0.0" />
 		    <parent link="cmg_hip_link"/>
 		    <child link="imu_link" />
-            <axis xyz="0 0 1"/>
-            <limit effort="1000" velocity="1000" upper="0" lower="0.0"/>
-            <joint_properties damping="1.0" friction="1.0"/>
+            <!-- <axis xyz="0 0 1"/> -->
+            <!-- <limit effort="1000" velocity="1000" upper="0" lower="0.0"/>
+            <joint_properties damping="1.0" friction="1.0"/> -->
 		</joint>
 
         <link name="imu_link">
-            <geometry>
-                    <box size="0.001 0.001 0.001"/>
-            </geometry>
            
         </link>
 
@@ -481,17 +480,17 @@
             <material>Gazebo/White</material>
         </gazebo>
 
-        <!-- <gazebo reference="imu_link">
+        <gazebo reference="imu_link">
             <gravity>true</gravity>
             <sensor name="imu_sensor" type="imu">
             <always_on>true</always_on>
-            <update_rate>100</update_rate>
+            <update_rate>2000</update_rate>
             <visualize>true</visualize>
             <topic>__default_topic__</topic>
             <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
                 <topicName>imu</topicName>
                 <bodyName>imu_link</bodyName>
-                <updateRateHZ>10.0</updateRateHZ>
+                <updateRateHZ>2000.0</updateRateHZ>
                 <gaussianNoise>0.0</gaussianNoise>
                 <xyzOffset>0 0 0</xyzOffset>
                 <rpyOffset>0 0 0</rpyOffset>
@@ -500,7 +499,7 @@
             </plugin>
             <pose>0 0 0 0 0 0</pose>
             </sensor>
-        </gazebo> -->
+        </gazebo>
 
 
 <!-- ######################################################################################### -->

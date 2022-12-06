@@ -31,12 +31,12 @@ def Cal_Roll_SS(z):
 
     tau_eq = sp.simplify(tau.subs(eq_point))
 
-    rpm = 1500
+    rpm = 5000
     flywheel_ang_vel = (rpm * 2 * np.pi)/60 
 
     Ml, Cl, Gl, Wl = get_EoM_from_T(tau_eq,qdd,g,u)
 
-    param = {w:flywheel_ang_vel, I_fx:0.006235, I_fy:0.0119107, I_bx:2.5082321733657604,  m_all:24.023, r:0.069, l: z,  g:9.81}
+    param = {w:flywheel_ang_vel, I_fx:0.006235, I_fy:0.0119107, I_bx:1.966766092966439,  m_all:24.023, r:0.069, l: z,  g:9.81}
 
     Mlp = msubs(Ml, param)
     Clp = msubs(Cl, param)

@@ -30,7 +30,7 @@ def Cal_Pitch_SS():
     tau_eq = sp.simplify(tau.subs(eq_point))
     
     Ml, Cl, Gl, Wl = get_EoM_from_T(tau_eq,qdd,g,u)
-    param = {I_1: 1.5684639621472638, I_w:0.002997277,  m_1:21.731,   m_w:2.292, r:0.069, l: 0.5920165410935432,  g:9.81}
+    param = {I_1: 1.2238207962945757, I_w:0.002997277,  m_1:21.731,   m_w:2.292, r:0.069, l: 0.5920165410935432,  g:9.81}
 
     Mlp = msubs(Ml, param)
     Clp = msubs(Cl, param)
